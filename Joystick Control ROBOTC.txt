@@ -14,8 +14,8 @@ task main()
   {
     getJoystickSettings(joystick);
     motor[frontRight] = joystick.y1Pos;
-	motor[frontLeft] = joystick.y1Pos;
-	motor[backRight] = joystick.y2Pos;
+    motor[frontLeft] = joystick.y1Pos;
+    motor[backRight] = joystick.y2Pos;
     motor[backLeft] = joystick.y2Pos;
   }
 
