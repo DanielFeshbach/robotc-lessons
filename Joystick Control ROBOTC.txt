@@ -7,16 +7,57 @@
 
 #include "JoystickDriver.c"
 
+int motorValue(int joystickValue) {
+	int output = 0;
+	if (abs(joystickValue) <= 10) {
+		output = 0;
+	}
+	else if (abs(joystickValue) <= 64) {
+		output = (abs(joystickValue) - 10) * 127/100
+	}
+	else if (joystickValue > 127){
+		nxtDisplayCenteredTexLine(1, "Error with");
+		nxtDisplayCenteredTexLine(2, "joystick input");
+		nxtDisplayCenteredTexLine(3, "to motor output");
+		nxtDisplayCenteredTexLine(4, "conversion:");
+		nxtDisplayCenteredTexLine(5, "joystickValue");
+		nxtDisplayCenteredTexLine(6, "is greater than");
+		nxtDisplayCenteredTexLine(7, "127");
+	}
+	else if (joystickValue < -128){
+		nxtDisplayCenteredTexLine(1, "Error with");
+		nxtDisplayCenteredTexLine(2, "joystick input");
+		nxtDisplayCenteredTexLine(3, "to motor output");
+		nxtDisplayCenteredTexLine(4, "conversion:");
+		nxtDisplayCenteredTexLine(5, "joystickValue");
+		nxtDisplayCenteredTexLine(6, "is less than");
+		nxtDisplayCenteredTexLine(7, "-128");
+	}
+	else if (joystickValue > 64){
+			output = joystickValue*127/100;
+	}
+	else if (joystickValue < -64){
+			output = joystickValue*128/100;
+	}
+	else {
+		nxtDisplayCenteredTexLine(1, "Error with");
+		nxtDisplayCenteredTexLine(2, "joystick input");
+		nxtDisplayCenteredTexLine(3, "to motor output");
+		nxtDisplayCenteredTexLine(4, "conversion:");
+		nxtDisplayCenteredTexLine(5, "cause unknown");
+	}
+	return output
+}
+
 task main()
 {
-
   while(1 == 1)
   {
     getJoystickSettings(joystick);
-    motor[frontRight] = joystick.y1Pos;
-	motor[frontLeft] = joystick.y1Pos;
-	motor[backRight] = joystick.y2Pos;
-    motor[backLeft] = joystick.y2Pos;
+    motor[frontRight] = motorValue(joystick.joy1_y1);
+	motor[frontLeft] = motorValue(joystick.joy1_y1);
+	motor[backRight] = motorValue(joystick.joy1_y2);
+    motor[backLeft] = motorValue(joystick.joy1_y2);
   }
 
 }
