@@ -46,6 +46,16 @@ int motorValue(int joystickValue) {
 		nxtDisplayCenteredTexLine(4, "conversion:");
 		nxtDisplayCenteredTexLine(5, "cause unknown");
 	}
+	if (abs(output) > 100){
+		nxtDisplayCenteredTexLine(1, "Error with");
+		nxtDisplayCenteredTexLine(2, "joystick input");
+		nxtDisplayCenteredTexLine(3, "to motor output");
+		nxtDisplayCenteredTexLine(4, "conversion:");
+		nxtDisplayCenteredTexLine(5, "motor output");
+		nxtDisplayCenteredTexLine(6, "is greater than");
+		nxtDisplayCenteredTexLine(7, "100 or less");
+		nxtDisplayCenteredTexLine(8, "than -100");
+	}
 	return output
 }
 
