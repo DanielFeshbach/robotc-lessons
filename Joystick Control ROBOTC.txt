@@ -54,10 +54,17 @@ task main()
   while(1 == 1)
   {
     getJoystickSettings(joystick);
+<<<<<<< HEAD
     motor[frontRight] = motorValue(joystick.joy1_y1);
 	motor[frontLeft] = motorValue(joystick.joy1_y1);
 	motor[backRight] = motorValue(joystick.joy1_y2);
     motor[backLeft] = motorValue(joystick.joy1_y2);
+=======
+    motor[frontRight] = joystick.y1Pos;
+    motor[frontLeft] = joystick.y1Pos;
+    motor[backRight] = joystick.y2Pos;
+    motor[backLeft] = joystick.y2Pos;
+>>>>>>> origin/master
   }
 
 }
